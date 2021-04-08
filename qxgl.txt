@@ -1,0 +1,145 @@
+CREATE TABLE product( 
+id varchar(32) PRIMARY KEY, 
+productNum VARCHAR(50) NOT NULL, 
+productName VARCHAR(50), 
+cityName VARCHAR(50), 
+DepartureTime timestamp, 
+productPrice DOUBLE, 
+productDesc VARCHAR(500), 
+productStatus INT, 
+CONSTRAINT product UNIQUE (id, productNum) 
+)
+
+insert into PRODUCT (id, productnum, productname, cityname, departuretime, productprice, productdesc, productstatus) values ('676C5BD1D35E429A8C2E114939C5685A', 'itcast-002', '北京三日游', '北京', '2018-03-24 10:30:00', 1200, '不错的旅行', 1); 
+insert into PRODUCT (id, productnum, productname, cityname, departuretime, productprice, productdesc, productstatus) values ('12B7ABF2A4C544568B0A7C69F36BF8B7', 'itcast-003', '上海五日游', '上海', '2018-03-24 11:25:00', 1800, '魔都我来了', 0); 
+insert into PRODUCT (id, productnum, productname, cityname, departuretime, productprice, productdesc, productstatus) values ('9F71F01CB448476DAFB309AA6DF9497F', 'itcast-001', '北京三日游', '北京', '2018-02-15 08:33:11', 1200, '不错的旅行', 1);
+
+CREATE TABLE orders( 
+id varchar(32) default 0 PRIMARY KEY, 
+orderNum VARCHAR(20) NOT NULL UNIQUE, 
+orderTime timestamp, 
+peopleCount INT, 
+orderDesc VARCHAR(500), 
+payType INT, 
+orderStatus INT, 
+productId varchar(32), 
+memberId varchar(32), 
+FOREIGN KEY (productId) REFERENCES product(id)
+)
+
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('0E7231DC797C486290E8713CA3C6ECCC', '12345', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '59f002b28c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9'); 
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('5DC6A48DD4E94592AE904930EA866AFA', '54321', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '59f002b28c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9'); 
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('2FF351C4AC744E2092DCF08CFD314420', '67890', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '59f002b28c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9'); 
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('A0657832D93E4B10AE88A2D4B70B1A28', '98765', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '5a18171d8c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9'); 
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('E4DD4C45EED84870ABA83574A801083E', '11111', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '5a18171d8c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9'); 
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('96CC8BD43C734CC2ACBFF09501B4DD5D', '22222', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '5a18171d8c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9'); 
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('55F9AF582D5A4DB28FB4EC3199385762', '33333', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '5a2967df8c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9');
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('CA005CF1BE3C4EF68F88ABC7DF30E976', '44444', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '5a2967df8c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9'); 
+insert into ORDERS (id, ordernum, ordertime, peoplecount, orderdesc, paytype, orderstatus, productid, memberid) values ('3081770BC3984EF092D9E99760FDABDE', '55555', '2018-03-15 12:00:00', 2, '没什么', 0, 1, '5a2967df8c4511ebbde200ffc1d549c9', 'c8b013818c7811ebbde200ffc1d549c9');
+
+CREATE TABLE member( 
+id varchar(32) PRIMARY KEY, 
+NAME VARCHAR(20), 
+nickname VARCHAR(20),
+phoneNum VARCHAR(20), 
+email VARCHAR(20) 
+)
+
+insert into MEMBER (id, name, nickname, phonenum, email) values ('E61D65F673D54F68B0861025C69773DB', '张三', '小三', '18888888888', 'zs@163.com');
+
+CREATE TABLE traveller( 
+id varchar(32) PRIMARY KEY, 
+NAME VARCHAR(20), 
+sex VARCHAR(20), 
+phoneNum VARCHAR(20), 
+credentialsType INT, 
+credentialsNum VARCHAR(50), 
+travellerType INT 
+)
+
+insert into TRAVELLER (id, name, sex, phonenum, credentialstype, credentialsnum, travellertype) values ('3FE27DF2A4E44A6DBC5D0FE4651D3D3E', '张龙', '男', '13333333333', 0, '123456789009876543', 0); 
+insert into TRAVELLER (id, name, sex, phonenum, credentialstype, credentialsnum, travellertype) values ('EE7A71FB6945483FBF91543DBE851960', '张小龙', '男', '15555555555', 0, '987654321123456789', 1);
+
+CREATE TABLE order_traveller( 
+orderId varchar(32), 
+travellerId varchar(32), 
+PRIMARY KEY (orderId,travellerId), 
+FOREIGN KEY (orderId) REFERENCES orders(id), 
+FOREIGN KEY (travellerId) REFERENCES traveller(id) 
+)
+
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('240c13508c7911ebbde200ffc1d549c9', 'd1aab2198c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('241518658c7911ebbde200ffc1d549c9', 'd1aab2198c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('241beb7a8c7911ebbde200ffc1d549c9', 'd1aab2198c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('2421b21f8c7911ebbde200ffc1d549c9', 'd1b338e48c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('242d73a68c7911ebbde200ffc1d549c9', 'd1b338e48c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('24342d018c7911ebbde200ffc1d549c9', 'd1b338e48c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('243d2db98c7911ebbde200ffc1d549c9', 'd1b338e48c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('2445df158c7911ebbde200ffc1d549c9', 'd1b338e48c7c11ebbde200ffc1d549c9'); 
+insert into ORDER_TRAVELLER (orderid, travellerid) values ('244c4bca8c7911ebbde200ffc1d549c9', 'd1b338e48c7c11ebbde200ffc1d549c9');
+
+CREATE TABLE users( 
+id varchar(32) PRIMARY KEY, 
+email VARCHAR(50) UNIQUE NOT NULL, 
+username VARCHAR(50), 
+PASSWORD VARCHAR(50), 
+phoneNum VARCHAR(20), 
+STATUS INT 
+)
+
+CREATE TABLE role( 
+id varchar(32) PRIMARY KEY, 
+roleName VARCHAR(50) , 
+roleDesc VARCHAR(50) 
+)
+
+CREATE TABLE users_role( 
+userId varchar(32), 
+roleId varchar(32), 
+PRIMARY KEY(userId,roleId), 
+FOREIGN KEY (userId) REFERENCES users(id), 
+FOREIGN KEY (roleId) REFERENCES role(id) 
+)
+
+CREATE TABLE permission( 
+id varchar(32) PRIMARY KEY, 
+permissionName VARCHAR(50) , 
+url VARCHAR(50) 
+)
+
+CREATE TABLE role_permission( 
+permissionId varchar(32), 
+roleId varchar(32), 
+PRIMARY KEY(permissionId,roleId), 
+FOREIGN KEY (permissionId) REFERENCES permission(id), 
+FOREIGN KEY (roleId) REFERENCES role(id) 
+)
+
+insert into role (roleName,roleDesc) values('USER','会员');
+
+insert into users (email,username,password,phoneNum,status) values('123@163.com','张三','111','13416525485',1);
+
+insert into permission (permissionName,url) values('张三','132');
+
+CREATE TABLE sysLog( 
+id VARCHAR(32) PRIMARY KEY, 
+visitTime timestamp, 
+username VARCHAR(50), 
+ip VARCHAR(30), 
+url VARCHAR(50), 
+executionTime int, 
+method VARCHAR(200) 
+)
+
+alter table syslog alter column id set default 0;
+
+
+create trigger id_trigger8
+before insert on syslog
+for each ROW
+BEGIN
+	SET new.ID=REPLACE(UUID(),'-','');
+END
+
+ALTER TABLE orders ADD FOREIGN KEY (memberId) REFERENCES member(id);
+
